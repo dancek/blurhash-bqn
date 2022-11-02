@@ -21,11 +21,10 @@ Ac2ints ← {
   0⌈18⌊⌊9.5+9×(××⋆⟜0.5∘|)(𝕩÷norm)
 }
 
-img ← (16÷˜4‿4⥊↕16)
-comps ← 3‿2 # y‿x components
+img ← (4‿4⥊0)∾(16÷˜4‿4⥊↕16)≍(4‿4⥊1)
+comps ← 2‿3 # y‿x components
 
-cs ← ⥊DCT2d⟜img¨(↕comps)
-cs ↩ cs∾cs≍cs
+cs ← {⥊DCT2d⟜𝕩¨(↕comps)}˘ img
 dc ← ⊏˘cs
 ac ← 2×1↓˘cs
 
@@ -33,6 +32,6 @@ c ← 1 Base83Pad +´9‿1×comps-1
 max ← ⌈´|⥊ac
 quant ← 0⌈82⌊⌊¯0.5+max×166
 q ← 1 Base83Pad quant
-a ← 4 Base83Pad +´(256⊸⋆↕3)× Lin2srgb¨ dc
-d ← 2⊸Base83Pad¨ +˝(19⊸⋆↕3)×Ac2ints ac
-c∾q∾a∾∾´d
+a ← 4 Base83Pad +´(⌽256⊸⋆↕3) × Lin2srgb¨ dc
+d ← 2⊸Base83Pad¨ +˝(⌽19⊸⋆↕3) × Ac2ints ac
+•Out c∾q∾a∾∾´d
