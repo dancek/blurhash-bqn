@@ -11,8 +11,9 @@ DCT2d ← {
 }
 
 Srgb2lin ← {
-  𝕩≤0.04045 ? 𝕩÷255×12.92;
-  ((𝕩+0.055)÷1.055)⋆2.4
+  u ← 𝕩÷255
+  {u≤0.04045 ? u×12.92;
+  ((u+0.055)÷1.055)⋆2.4}
 }
 Lin2srgb ← {
   𝕩≤0.0031308 ? ⌊0.5+12.92×255×0⌈𝕩;
@@ -23,25 +24,20 @@ Ac2ints ← {
   0⌈18⌊⌊9.5+9×(××⋆⟜0.5∘|)(𝕩÷norm)
 }
 
-EncodeLinear ← {comps 𝕊 img:
-  cs ← (⥊↕comps) DCT2d⌜ <˘img
+EncodeLinear ⇐ {comps 𝕊 img:
+  cs ← (⥊↕⌽comps) DCT2d⌜ <˘img
 
   dc ← ⊏cs
   ac ← 2×1↓cs
 
-  c ← 1 Base83Pad +´9‿1×comps-1
-  max ← ⌈´|⥊ac
+  c ← 1 Base83Pad +´1‿9×comps-1
+  max ← •Show ⌈´|⥊ac
   quant ← 0⌈82⌊⌊¯0.5+max×166
   q ← 1 Base83Pad quant
   a ← 4 Base83Pad +´(⌽256⊸⋆↕3) × Lin2srgb¨ dc
   d ← 2⊸Base83Pad¨ +˝(⌽19⊸⋆↕3) × ⍉ quant Ac2ints ac
   c∾q∾a∾∾´d
 }
-Encode ← {
-  𝕨 EncodeLinear Srgb2lin 𝕩
+Encode ⇐ {
+  𝕨 EncodeLinear Srgb2lin¨ 𝕩
 }
-
-img ← (4‿4⥊0)∾(16÷˜4‿4⥊↕16)≍(4‿4⥊1)
-comps ← 2‿3 # y‿x components
-
-•Out comps EncodeLinear img
