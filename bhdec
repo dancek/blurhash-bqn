@@ -1,0 +1,20 @@
+#!/usr/bin/env bqn
+
+blurhash ← •Import "blurhash.bqn"
+ppm ← •Import "ppm.bqn"
+
+Run ← {𝕊 file‿size‿hash:
+  file •FBytes ppm.Encode size blurhash.Decode hash
+}
+
+{
+  𝕊 ⟨hash⟩: Run "out.ppm"‿⟨32,32⟩‿hash;
+  𝕊 hash‿file: Run file‿⟨32,32⟩‿hash;
+  𝕊 hash‿x‿y‿file: Run file‿⟨•BQN x, •BQN y⟩‿hash;
+  •Out "Usage:
+  "∾•name∾" <blurhash> [[x y] outfile]
+      x         x resolution (default 32)
+      y         y resolution (default 32)
+      blurhash  blurhash
+      outfile   output filename (default out.ppm)"
+}•args

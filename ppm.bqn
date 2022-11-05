@@ -30,3 +30,14 @@ Decode ⇐ {𝕊 data:
 
   2‿1‿0 ⍉⁼ h‿w‿3⥊pxs-@
 }
+
+Encode ⇐ {𝕊 img:
+  ch‿w‿h ← ≢img
+  "Only RGB supported!" ! ch=3
+  "Data needs to be integers between 0-255" ! (255≥⌈´⥊img)∧(0≤⌊´⥊img)
+  data ← @+¨⥊2‿1‿0⍉⁼img
+  "P6
+"∾(•Fmt w)∾" "∾(•Fmt h)∾" 255
+"∾data
+}
+
