@@ -3,4 +3,4 @@
 blurhash ← •Import "blurhash.bqn"
 ppm ← •Import "ppm.bqn"
 
-•Out 5‿1 blurhash.Encode ppm.Decode •FBytes ⊑•args
+•Out 4‿3 blurhash.Encode ppm.Decode •FBytes ⊑•args

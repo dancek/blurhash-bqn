@@ -25,13 +25,13 @@ Ac2ints ← {
 }
 
 EncodeLinear ⇐ {comps 𝕊 img:
-  cs ← (⥊↕⌽comps) DCT2d⌜ <˘img
+  cs ← (⥊⍉↕comps) DCT2d⌜ <˘img
 
   dc ← ⊏cs
   ac ← 2×1↓cs
 
   c ← 1 Base83Pad +´1‿9×comps-1
-  max ← •Show ⌈´|⥊ac
+  max ← ⌈´|⥊ac
   quant ← 0⌈82⌊⌊¯0.5+max×166
   q ← 1 Base83Pad quant
   a ← 4 Base83Pad +´(⌽256⊸⋆↕3) × Lin2srgb¨ dc
