@@ -1,0 +1,14 @@
+#!/usr/bin/env bqn
+
+blurhash ← •Import "blurhash.bqn"
+ppm ← •Import "ppm.bqn"
+
+{
+  𝕊 ⟨file⟩: •Out 4‿3 blurhash.Encode ppm.Decode •FBytes file;
+  𝕊 x‿y‿file: •Out (⊑¨x‿y-'0') blurhash.Encode ppm.Decode •FBytes file; # TODO: check range 1..9
+  •Out "Usage:
+  "∾•name∾" [xcomp ycomp] <img>
+      xcomp     x components (1-9; default 4)
+      ycomp     y components (1-9; default 3)
+      img       image file; only PPM type P6 supported for now"
+}•args
