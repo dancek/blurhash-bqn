@@ -28,5 +28,5 @@ Decode ⇐ {𝕊 data:
   m‿pxs ← ReadNumber d3
   "Only 8-bit PPM channels are supported for now!" ! m<256
 
-  2‿0‿1 ⍉⁼ w‿h‿3⥊pxs-@
+  2‿0‿1 ⍉⁼ h‿w‿3⥊pxs-@
 }
