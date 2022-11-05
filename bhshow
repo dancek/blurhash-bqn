@@ -1,0 +1,18 @@
+#!/usr/bin/env bqn
+
+blurhash ← •Import "blurhash.bqn"
+{
+  𝕊 ⟨hash⟩: 
+    img ← 60‿20 blurhash.Decode hash
+    {𝕊
+      {𝕊 colors:
+        •term.OutRaw (@+27)∾"[48;2"∾(∾´{';'∾•Fmt𝕩}¨colors)∾"m "
+        @
+      }˘𝕩
+      •term.OutRaw (@+27)∾"[m
+"
+    }˘2‿1‿0⍉⁼img
+  ;
+  •Out "Usage:
+  "∾•name∾" <blurhash>"
+}•args

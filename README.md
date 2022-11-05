@@ -22,6 +22,10 @@ Usage:
 
 To get PPM files, try ImageMagick: `convert img.jpg img.ppm`
 
+### Displaying
+
+`./bhshow "LGFi1MUH=y#M:d5b+*Ex@[or[Q6."` displays a terminal true-color rendering of the blurhash. Requires true-color support from terminal.
+
 ### Decoding
 
 `./bhdec "AGFi1MUH:d5b"` creates a 32x32 rendering in the file `out.ppm`.
@@ -41,3 +45,4 @@ Usage:
 - properly document the BQN API
 - add browser demo
 - support other image formats, probably with external libraries
+- add images to readme
