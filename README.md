@@ -8,6 +8,10 @@ MIT license.
 
 ## Command-line usage
 
+### Demo video
+
+https://user-images.githubusercontent.com/245394/200178670-618e216c-74dc-4a54-b08a-92967c6b26b0.mp4
+
 ### Encoding
 
 `./bhenc img.ppm` outputs a blurhash with the default components (4,3).
